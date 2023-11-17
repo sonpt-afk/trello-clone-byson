@@ -1,0 +1,19 @@
+import ModeSelect from '../ModeSelect'
+import { Box } from '@mui/material'
+function AppBar() {
+  return (
+    <div>
+      <Box sx={{
+      backgroundColor: 'primary.light',
+      width: '100%',
+      height: (theme) => theme.trello.appBarHeight,
+      display: 'flex',
+      alignItems: 'center'
+    }}>
+      <ModeSelect></ModeSelect>
+    </Box>
+    </div>
+  )
+}
+
+export default AppBar
