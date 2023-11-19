@@ -37,7 +37,6 @@ function BoardBar() {
           overflowX: "auto",
           bgcolor: (theme) =>
             theme.palette.mode === "dark" ? "#000" : "#3498db",
-          borderBottom: "1px solid #fff",
         }}
       >
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
