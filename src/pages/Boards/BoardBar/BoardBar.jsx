@@ -9,20 +9,25 @@ import AvatarGroup from "@mui/material/AvatarGroup";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
-const MENU_STYLES = {
-  color: "#fff",
-  bgcolor: "#000",
-  border: "none",
-  borderRadius: "5px",
-  "& .MuiSvgIcon-root": {
-    color: "#fff",
-  },
-  "&:hover": {
-    bgcolor: "#000",
-  },
-};
+import { capitalizeFirstLetter } from "~/utils/formatters";
 
-function BoardBar() {
+// const MENU_STYLES = {
+//   color: "#fff",
+//   bgcolor: "#000",
+//   border: "none",
+//   borderRadius: "5px",
+//   "& .MuiSvgIcon-root": {
+//     color: "#fff",
+//   },
+//   "&:hover": {
+//     bgcolor: "#000",
+//   },
+// };
+
+function BoardBar({ board }) {
+  // const { board } = props;
+  // const board = props.board;
+
   return (
     <div>
       <Box
@@ -55,8 +60,8 @@ function BoardBar() {
               },
             }}
             icon={<DashboardIcon />}
-            label="TrungSon MERN STACK Board"
-            onClick={() => {}}
+            label={board?.title}
+            clickable
           />
           <Chip
             sx={{
@@ -72,9 +77,9 @@ function BoardBar() {
                 bgcolor: "#2980b9",
               },
             }}
-            label="Public/Private Workspace"
+            label={capitalizeFirstLetter(board?.type)}
             icon={<VpnLockIcon />}
-            onClick={() => {}}
+            clickable
           />
           <Chip
             sx={{
@@ -92,7 +97,7 @@ function BoardBar() {
             }}
             label="Add to Google Drive "
             icon={<AddToDriveIcon />}
-            onClick={() => {}}
+            clickable
           />
           <Chip
             sx={{
@@ -110,7 +115,7 @@ function BoardBar() {
             }}
             label="Automation"
             icon={<BoltIcon />}
-            onClick={() => {}}
+            clickable
           />
           <Chip
             sx={{
@@ -128,7 +133,7 @@ function BoardBar() {
             }}
             label="Filter"
             icon={<FilterListIcon />}
-            onClick={() => {}}
+            clickable
           />
         </Box>
         <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

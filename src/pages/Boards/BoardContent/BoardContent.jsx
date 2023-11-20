@@ -1,8 +1,15 @@
 import Box from "@mui/material/Box";
 import ListColumns from "./ListColumns/ListColumns";
-function BoardContent() {
+import { mapOrder } from "~/utils/sorts";
+import { DndContext } from "@dnd-kit/core";
+function BoardContent({ board }) {
+  const orderedColumns = mapOrder(board?.columns, board?.columnOrderIds, "_id");
+
+  const handleDragEnd = (e) => {
+    console.log("drag end", e);
+  };
   return (
-    <div>
+    <DndContext onDragEnd={handleDragEnd}>
       <Box
         sx={{
           bgcolor: (theme) =>
@@ -12,9 +19,9 @@ function BoardContent() {
           p: "10px 0",
         }}
       >
-        <ListColumns />
+        <ListColumns columns={orderedColumns} />
       </Box>
-    </div>
+    </DndContext>
   );
 }
 

@@ -2,10 +2,18 @@ import Box from "@mui/material/Box";
 import Column from "./Column/Column";
 import Button from "@mui/material/Button";
 import NoteAddIcon from "@mui/icons-material/NoteAdd";
-
-function ListColumns() {
+import {
+  SortableContext,
+  horizontalListSortingStrategy,
+} from "@dnd-kit/sortable";
+function ListColumns({ columns }) {
+  // Thằng SortableContext yêu cầu items là 1 array dạng ['id-1','id-2'] chứ ko phải [{id: 'id-1'}, {id: 'id-2'}]
+  // nếu ko đúng thì vx kéo thả đc nhưng ko có animation
   return (
-    <div>
+    <SortableContext
+      items={columns?.map((c) => c._id)}
+      strategy={horizontalListSortingStrategy}
+    >
       <Box
         sx={{
           bgcolor: "inherit",
@@ -14,11 +22,13 @@ function ListColumns() {
           overflowX: "auto",
           overflowY: "hidden",
           display: "flex",
+          "&::-webkit-scrollbar-track": { m: 2 },
         }}
       >
-        <Column />
-        <Column />
-        <Column />
+        {columns?.map((column) => (
+          <Column key={column._id} column={column} />
+        ))}
+
         {/* box add new column CTA */}
         <Box
           sx={{
@@ -44,7 +54,7 @@ function ListColumns() {
           </Button>
         </Box>
       </Box>
-    </div>
+    </SortableContext>
   );
 }
 
