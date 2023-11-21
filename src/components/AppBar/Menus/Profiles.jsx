@@ -13,7 +13,7 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import AvatarPic from "~/assets/anhtroccmicveSon.png";
+import AvatarPic from "~/assets/anhtrocomicveSon.png";
 
 function Profiles() {
   const [anchorEl, setAnchorEl] = React.useState(null);
