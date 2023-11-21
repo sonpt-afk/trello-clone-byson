@@ -3,7 +3,6 @@ import Container from "@mui/material/Container";
 import BoardBar from "./BoardBar/BoardBar";
 import BoardContent from "./BoardContent/BoardContent";
 import { mockData } from "~/apis/mock-data";
-import { capitalizeFirstLetter } from "~/utils/formatters";
 function Board() {
   return (
     <div>

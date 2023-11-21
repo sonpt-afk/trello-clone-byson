@@ -22,10 +22,17 @@ import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 function Column({ column }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: column.id, data: { ...column } });
+    useSortable({
+      id: column._id,
+      data: { ...column },
+    });
 
   const dndKitColumnStyles = {
-    transform: CSS.Transform.toString(transform),
+    //Danh cho sensor default bang PointerSensor
+
+    touchAction: "none",
+    //Neu dung CSS.Transform nhu docs se loi kieu stretch -> dung Translate
+    transform: CSS.Translate.toString(transform),
     transition,
   };
 
