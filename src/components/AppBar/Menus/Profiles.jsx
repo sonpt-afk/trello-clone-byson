@@ -13,7 +13,6 @@ import Tooltip from "@mui/material/Tooltip";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import Settings from "@mui/icons-material/Settings";
 import Logout from "@mui/icons-material/Logout";
-import AvatarPic from "~/assets/anhtroccomic.png";
 
 function Profiles() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -37,7 +36,7 @@ function Profiles() {
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
           >
-            <Avatar sx={{ width: 34, height: 34 }} src={AvatarPic} alt="sonpt">
+            <Avatar sx={{ width: 34, height: 34 }} alt="sonpt">
               S
             </Avatar>{" "}
           </IconButton>
