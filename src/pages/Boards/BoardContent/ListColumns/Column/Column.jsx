@@ -55,6 +55,7 @@ function Column({ column }) {
         {...attributes}
         {...listeners}
         sx={{
+          overflow: "scroll",
           minWidth: "300px",
           maxWidth: "300px",
           bgcolor: (theme) =>
@@ -72,7 +73,7 @@ function Column({ column }) {
             height: (theme) => theme.trello.ColumnHeaderHeight,
             display: "flex",
             alignItems: "center",
-            p: 3,
+            p: 2,
             justifyContent: "space-between",
           }}
         >
