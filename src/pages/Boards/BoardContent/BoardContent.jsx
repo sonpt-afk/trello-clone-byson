@@ -10,6 +10,7 @@ import {
   TouchSensor,
   DragOverlay,
   defaultDropAnimationSideEffects,
+  closestCorners,
 } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import Column from "./listColumns/Column/Column";
@@ -167,7 +168,7 @@ function BoardContent({ board }) {
         const nextOverColumn = nextColumns.find(
           (column) => column._id === overColumn._id
         );
-       
+
         //nextActiveColumn: column cũ
 
         if (nextActiveColumn) {
@@ -219,7 +220,11 @@ function BoardContent({ board }) {
   };
   return (
     <DndContext
+      //cảm biến
       sensors={sensors}
+      //thuật toán phát hiện va chạm (nếu ko có thì card với cover lớn sẽ ko kéo qua Column đc vì lúc
+      //đó nó đang conflict giữa card và column), chúng ta sẽ dùng closestCorners thay vì closestCenter
+      collisionDetection={closestCorners}
       onDragEnd={handleDragEnd}
       onDragStart={handleDragStart}
       onDragOver={handleDragOver}
