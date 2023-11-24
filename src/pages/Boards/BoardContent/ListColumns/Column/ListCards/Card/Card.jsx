@@ -7,7 +7,30 @@ import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 function Card({ card }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: card._id,
+    data: { ...card },
+  });
+
+  const dndKitCardStyles = {
+    //Danh cho sensor default bang PointerSensor
+    //Neu dung CSS.Transform nhu docs se loi kieu stretch -> dung Translate
+    transform: CSS.Translate.toString(transform),
+    transition,
+    opacity: isDragging ? 0.5 : undefined,
+    border: isDragging ? "1px solid #2ecc71" : "undefined",
+  };
+
   const shouldShowCardAction = () => {
     return (
       card?.memberIds?.length ||
@@ -18,6 +41,10 @@ function Card({ card }) {
 
   return (
     <MuiCard
+      ref={setNodeRef}
+      style={dndKitCardStyles}
+      {...attributes}
+      {...listeners}
       sx={{
         cursor: "pointer",
         boxShadow: "0 1px 1px rgba(0,0,0,0.2)",

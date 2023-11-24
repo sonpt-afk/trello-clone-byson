@@ -42,7 +42,7 @@ export const mockData = {
           {
             _id: "card-id-02",
             boardId: "board-id-01",
-            columnId: "column-id-01",
+            columnId: "card-id-01",
             title: "Assemble a team",
             description: null,
             cover:

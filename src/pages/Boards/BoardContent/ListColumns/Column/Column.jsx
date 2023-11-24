@@ -21,19 +21,28 @@ import { mapOrder } from "~/utils/sorts";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 function Column({ column }) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: column._id,
-      data: { ...column },
-    });
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({
+    id: column._id,
+    data: { ...column },
+  });
 
   const dndKitColumnStyles = {
     //Danh cho sensor default bang PointerSensor
-
-    touchAction: "none",
     //Neu dung CSS.Transform nhu docs se loi kieu stretch -> dung Translate
     transform: CSS.Translate.toString(transform),
     transition,
+    //CHIều cao luôn max 100% vì nếu ko sẽ lỗi khi kéo thả column ngắn qua 1 cái column
+    // dài thì phải kéo ở khu vực giữa khó chịu .lúc này phải kết hợp với
+    // {...listeners} nằm ở Box chứ ko phải ở div ngoài cùng để tránh trường hợp kéo vào vùng xanh
+    heigt: "100%",
+    opacity: isDragging ? 0.5 : undefined,
   };
 
   const [anchorEl, setAnchorEl] = useState(null);
@@ -47,12 +56,9 @@ function Column({ column }) {
 
   const orderedCards = mapOrder(column?.cards, column?.cardOrderIds, "_id");
   return (
-    <div>
+    <div ref={setNodeRef} style={dndKitColumnStyles} {...attributes}>
       {/* BOX COLUMN */}
       <Box
-        ref={setNodeRef}
-        style={dndKitColumnStyles}
-        {...attributes}
         {...listeners}
         sx={{
           overflow: "scroll",
